@@ -1,9 +1,58 @@
+import { useContext, useRef } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { AuthContext } from '../../Provider/AuthProvider';
 import Container from "../../container/Container/Container";
 import './login.css';
 
 const Login = () => {
+    const {  signIn,  signInWithGoogle,} = useContext(AuthContext);
+        const navigate = useNavigate();
+        const location = useLocation();
+          const from =location.state?.from?.pathname || '/'
+        const emailRef = useRef();
+
+        const handleSubmit = event =>{
+            event.preventDefault();
+            const form = event.target;
+            const email = form.email.value;
+            const password = form.password.value;
+            console.log(email, password)
+            signIn(email, password)
+            .then(result =>{
+                const user = result.user;
+                console.log('signIn',user);
+                navigate('/');
+                Swal.fire({
+                    position: "top",
+                    icon: "success",
+                    title: "User Login Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            })
+            .catch(error =>{
+                console.log(error.message)
+            })
+
+        }
+
+        const handleGoogleSignIn = ()=>{
+            signInWithGoogle()
+            .then(result =>{
+                const user = result.user;
+                console.log('googleUser', user);
+                navigate('/');
+            })
+            .catch(error =>{
+                console.log(error.message)
+            })
+        }
+
+
+
     return (
         <Container>
         <div className="login-bg rounded-xl">
@@ -17,6 +66,7 @@ const Login = () => {
             </p>
           </div>
           <form
+          onSubmit={handleSubmit}
             noValidate=''
             action=''
             className='space-y-6 ng-untouched ng-pristine ng-valid'
@@ -74,7 +124,7 @@ const Login = () => {
             </p>
             <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
           </div>
-          <div className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
+          <div onClick={handleGoogleSignIn} className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
             <FcGoogle size={32} />
   
             <p>Continue with Google</p>
@@ -94,6 +144,7 @@ const Login = () => {
         
         </div>
          </div>
+         <Toaster></Toaster>
         </Container>
     );
 };

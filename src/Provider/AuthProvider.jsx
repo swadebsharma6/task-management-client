@@ -1,11 +1,11 @@
 
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from 'react';
-import { app } from '../firebase/firebase.config';
+import auth from "../firebase/firebase.config";
+
   
   export const AuthContext = createContext(null)
   
-  const auth = getAuth(app)
   const googleProvider = new GoogleAuthProvider()
   
   const AuthProvider = ({ children }) => {
@@ -53,7 +53,7 @@ import { app } from '../firebase/firebase.config';
       return () => {
         return unsubscribe()
       }
-    }, [])
+    }, []);
   
     const authInfo = {
       user,

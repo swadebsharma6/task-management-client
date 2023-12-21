@@ -1,9 +1,82 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Container from "../../container/Container/Container";
 
+import { useContext } from 'react';
 import { FcGoogle } from 'react-icons/fc';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Signup = () => {
+    const navigate = useNavigate();
+    // const location = useLocation();
+    // const from =location.state?.from?.pathname || '/'
+    const { 
+        createUser,
+        updateUserProfile,
+        signInWithGoogle,
+        } = useContext(AuthContext);
+
+
+    const handleSubmit = event =>{
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+       console.log( name,email, password);
+
+    //    image
+    const image = form.image.files[0];
+    const formData = new FormData();
+    formData.append( 'image',image);
+
+    const url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_KEY}`;
+    fetch(url, {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(imgData =>{
+        const userImg = imgData.data.display_url;
+        createUser(email,password)
+        .then(result =>{
+             updateUserProfile(name, userImg)
+            .then(result =>{
+                const user = result.user;
+                console.log('created user',user);
+                navigate('/login')
+            })
+            .catch(error =>{
+                console.log(error.message);
+            })
+            
+        })
+        .catch(error =>{
+            console.log(error.message)
+        })
+        // console.log(userImg)
+    })
+    .catch(error =>{
+        console.log(error.message)
+    })
+
+   
+
+    }
+
+    const handleGoogleSignIn = ()=>{
+        signInWithGoogle()
+        .then(result =>{
+            const user = result.user;
+            console.log('googleUser', user);
+            navigate('/')
+            
+        })
+        .catch(error =>{
+            console.log(error.message)
+        })
+    }
+
+
     return (
         <Container>
         <div className="login-bg rounded-xl">
@@ -14,6 +87,7 @@ const Signup = () => {
             <p className='text-sm text-gray-400'>Welcome to AirCNC</p>
           </div>
           <form
+          onSubmit={handleSubmit}
             noValidate=''
             action=''
             className='space-y-6 ng-untouched ng-pristine ng-valid'
@@ -91,7 +165,7 @@ const Signup = () => {
             </p>
             <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
           </div>
-          <div className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
+          <div onClick={handleGoogleSignIn} className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
             <FcGoogle size={32} />
   
             <p>Continue with Google</p>
