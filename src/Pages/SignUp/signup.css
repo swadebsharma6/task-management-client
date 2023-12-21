@@ -1,0 +1,6 @@
+.login-bg {
+  background-image: url("../../assets/images/bg.jpg");
+  background-size: cover;
+  height: calc(100vh - 20px);
+  overflow: hidden;
+}
