@@ -1,0 +1,9 @@
+.banner-bg {
+  background-image: url("../../assets/images/task-banner.jpg");
+  background-size: cover;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

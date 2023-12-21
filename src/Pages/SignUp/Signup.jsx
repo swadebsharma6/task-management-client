@@ -37,27 +37,29 @@ const Signup = () => {
     .then(res => res.json())
     .then(imgData =>{
         const userImg = imgData.data.display_url;
-        createUser(email,password)
-        .then(result =>{
-             updateUserProfile(name, userImg)
-            .then(result =>{
-                const user = result.user;
-                console.log('created user',user);
-                navigate('/login')
-            })
-            .catch(error =>{
-                console.log(error.message);
-            })
-            
+        // created user
+    createUser(email,password)
+    .then(result =>{
+        const user = result.user;
+        console.log('createdUser', user);
+        updateUserProfile(name, userImg)
+        .then(result => {
+            const user = result.user;
+            console.log(user)
         })
-        .catch(error =>{
+        .catch(error=>{
             console.log(error.message)
         })
-        // console.log(userImg)
+        
     })
     .catch(error =>{
         console.log(error.message)
     })
+    })
+    .catch(error =>{
+        console.log(error.message)
+    })
+    
 
    
 

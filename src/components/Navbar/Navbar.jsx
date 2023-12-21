@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Container from "../../container/Container/Container";
 import MenuDropDown from "./MenuDropDown";
+import './navbar.css';
 
 
 
@@ -8,12 +9,12 @@ const Navbar = () => {
 
     const menus = <>
     <li><NavLink
-    to="/"
+    to="/contact"
     className={({ isActive, }) =>
        isActive ? " font-bold text-orange-500" : ""
     }
   >
-    Home
+   Contact
   </NavLink></li>
     <li><NavLink
     to="/about"
@@ -29,7 +30,7 @@ const Navbar = () => {
     return (
         <Container>
          <div className="mb-10">
-         <div className="navbar ">
+         <div className="navbar nav-bg px-4 py-5 rounded-b-lg">
          <div className="navbar-start">
            <div className="dropdown">
              <div tabIndex={0} role="button" className="btn  lg:hidden">
