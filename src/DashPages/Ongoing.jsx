@@ -13,7 +13,7 @@ const Ongoing = () => {
             setOngoing(data)
         })
 
-    }, [])
+    }, []);
 
     return (
         <div>
