@@ -20,7 +20,7 @@ const Form = () => {
         
       };
       console.log(taskItem)
-      fetch('http://localhost:5000/task', {
+      fetch('https://task-management-server-psi-seven.vercel.app/task', {
         method: 'POST',
         headers:{
             'content-type': 'application/json'

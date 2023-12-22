@@ -6,7 +6,7 @@ const Completed = () => {
     const {user} = useContext(AuthContext)
 
     useEffect(()=>{
-        const url = `http://localhost:5000/complete`;
+        const url = `https://task-management-server-psi-seven.vercel.app/complete`;
         fetch(url)
         .then(res => res.json())
         .then(data => {

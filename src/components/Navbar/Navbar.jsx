@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import logo from '../../assets/images/task-logo.png';
 import Container from "../../container/Container/Container";
 import MenuDropDown from "./MenuDropDown";
 import './navbar.css';
@@ -40,7 +41,9 @@ const Navbar = () => {
                {menus}
              </ul>
            </div>
-           <a className="btn btn-warning text-xl">TASK</a>
+           <Link to='/'>
+           <img className="w-20 rounded-full" src={logo} alt="" />
+           </Link>
          </div>
          <div className="navbar-center hidden lg:flex">
            <ul className="menu menu-horizontal px-1">

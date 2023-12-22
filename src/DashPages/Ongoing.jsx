@@ -6,7 +6,7 @@ const Ongoing = () => {
     const {user} = useContext(AuthContext)
 
     useEffect(()=>{
-        const url = `http://localhost:5000/on-task`;
+        const url = `https://task-management-server-psi-seven.vercel.app/on-task`;
         fetch(url)
         .then(res => res.json())
         .then(data => {

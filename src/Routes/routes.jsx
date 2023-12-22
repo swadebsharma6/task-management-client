@@ -11,6 +11,7 @@ import Contact from "../Pages/Contact/Contact";
 import DashBoard from "../Pages/DashBoard/DashBoard";
 import Home from "../Pages/Home/Home";
 
+import ErrorPage from "../Pages/ErrorPage";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/SignUp/Signup";
 import PrivetRoute from "./PrivetRoute";
@@ -40,7 +41,8 @@ export const router = createBrowserRouter([
             path: '/signup',
             element: <Signup></Signup>
         }
-      ]
+      ],
+      errorElement: <ErrorPage></ErrorPage>
     },
     {
         path: '/dashboard',
@@ -74,7 +76,8 @@ export const router = createBrowserRouter([
                     element: <PersonalTask></PersonalTask>
                  },   
             
-        ]
+        ],
+        errorElement: <ErrorPage></ErrorPage>
         
     }
    

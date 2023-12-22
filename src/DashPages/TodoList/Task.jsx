@@ -6,7 +6,7 @@ const Task = ({task}) => {
     const {title, description, priority, date, name, email} = task;
 
     const handleCompleteTask =( task) =>{
-        fetch('http://localhost:5000/complete',{
+        fetch('https://task-management-server-psi-seven.vercel.app/complete',{
             method:'POST',
            headers:{
             'content-type': 'application/json'
@@ -28,7 +28,7 @@ const Task = ({task}) => {
         })
     }
     const handleOngoingTask =( task) =>{
-        fetch('http://localhost:5000/on-task',{
+        fetch('https://task-management-server-psi-seven.vercel.app/on-task',{
             method:'POST',
            headers:{
             'content-type': 'application/json'

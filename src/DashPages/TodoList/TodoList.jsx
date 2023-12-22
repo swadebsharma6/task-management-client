@@ -5,7 +5,7 @@ const TodoList = () => {
     const [tasks, setTask] = useState([]);
 
     useEffect(()=>{
-        const url = `http://localhost:5000/task`;
+        const url = `https://task-management-server-psi-seven.vercel.app/task`;
         fetch(url)
         .then(res => res.json())
         .then(data => {

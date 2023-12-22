@@ -52,7 +52,7 @@ const Signup = () => {
                  userImg,
               };
               // send user to Mongodb
-              fetch("http://localhost:5000/users", {
+              fetch("https://task-management-server-psi-seven.vercel.app/users", {
                 method: "POST",
                 headers: {
                   "content-type": "application/json",
