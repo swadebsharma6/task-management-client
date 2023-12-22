@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { MdAddTask } from "react-icons/md";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Form = () => {
@@ -32,7 +33,13 @@ const Form = () => {
         console.log(data);
         reset();
         if(data.insertedId){
-            alert('Added TAsk Successfully')
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Task Created Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
       })
     
