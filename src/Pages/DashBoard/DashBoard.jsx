@@ -1,7 +1,6 @@
-import { FaBook, FaHome, FaList, FaPhone, FaUser, } from "react-icons/fa";
-import { IoCreate } from "react-icons/io5";
-import { MdIncompleteCircle } from "react-icons/md";
+import { FaBook, FaHome, FaPhone, FaUser } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import SubNav from "../../components/SubNav/SubNav";
 import Container from "../../container/Container/Container";
 import DashBoardUser from "./DashBoardUser";
 
@@ -27,26 +26,7 @@ const DashBoard = () => {
            <FaHome></FaHome>
           User Home</NavLink>
            </li>
-           <li> 
-           <NavLink to='/dashboard/createTask'>
-           <IoCreate />
-           Create Task</NavLink>
-           </li>
-           <li> 
-           <NavLink to='/dashboard/todoList'>
-           <FaList></FaList>
-          TodoList</NavLink>
-           </li>
-           <li> 
-           <NavLink to='/dashboard/ongoing'>
-           <FaBook></FaBook>
-           Ongoing</NavLink>
-           </li>
-           <li> 
-           <NavLink to='/dashboard/completed'>
-           <MdIncompleteCircle />
-           Completed</NavLink>
-           </li>
+           
            <li> 
            <NavLink to='/dashboard/personalTask'>
            <FaUser></FaUser>
@@ -75,7 +55,7 @@ const DashBoard = () => {
        </ul>
           </div>
           <div className="flex-1 bg-purple-500 p-10 min-h-screen rounded-t-md">
-          <h2>Right Side</h2>
+          <SubNav></SubNav>
           <Outlet></Outlet>
           </div>
         </div>

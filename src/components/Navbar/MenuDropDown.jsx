@@ -28,9 +28,16 @@ const MenuDropDown = () => {
         <section className="flex items-center gap-4">
             
           <div>
-            { user ? <button onClick={handleLogOut} className="btn btn-secondary">
+            { user ? <>
+              <button onClick={handleLogOut} className="btn btn-sm mr-4 btn-secondary">
             <RiLogoutCircleRLine className="text-xl" /> 
-            LogOut</button>:<Link to='/login'><button className="btn shadow-lg btn-primary">
+            LogOut</button>
+            <Link to='/signup'><button className="btn btn-sm shadow-lg btn-primary">
+            <RiLogoutCircleRLine className="text-xl" /> 
+            Signup</button></Link>
+
+              </>
+            :<Link to='/login'><button className="btn shadow-lg btn-primary">
             <RiLogoutCircleRLine className="text-xl" /> 
             Login</button></Link>}
           </div>

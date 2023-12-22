@@ -10,8 +10,10 @@ import About from "../Pages/About/About";
 import Contact from "../Pages/Contact/Contact";
 import DashBoard from "../Pages/DashBoard/DashBoard";
 import Home from "../Pages/Home/Home";
-import Login from "../Pages/Login/login";
+
+import Login from "../Pages/Login/Login";
 import Signup from "../Pages/SignUp/Signup";
+import PrivetRoute from "./PrivetRoute";
 
 export const router = createBrowserRouter([
     {
@@ -42,7 +44,7 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashBoard></DashBoard>,
+        element: <PrivetRoute><DashBoard></DashBoard></PrivetRoute>,
         children:[
             
                 {
